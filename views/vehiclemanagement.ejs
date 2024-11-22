@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/vehiclemanagement.css">
+    <title>Vehicle Management</title>
+</head>
+<body>
+    <header class="head">
+        <nav>
+            <a href="/vehiclemanagement">Vehicle Brands</a>
+            <a href="#">Vehicle Category</a>
+        </nav>
+    </header>
+    <h1 class="heading">Brand of <span>vehicles</span></h1>
+    <section class="services" id="services">
+     <div class="box-container">
+         <% for(var i=0;i<(mani.length);i++) { %>
+         <div class="box" onclick="updateveh(this)">
+                 <h3 id="head"><%=mani[i].head%></h3>
+                 <img src="<%=mani[i].image%>" alt="<%=mani[i].image%>" id="img" onclick="image(this)">
+                 <p id="content"><%=mani[i].content%></p>
+         </div>
+         <% } %>
+     </div>
+        <details class="vehbrand">
+        <summary>Customize Vehicle's Brand</summary><h6>Click the vehicle image to autofill the input and make ease of Customization</h6>
+    </details>
+     <section class="addveh">
+        <div class="form">
+        <form action="/vehicleaddition" method="post" onsubmit="return vehicleadd()">
+            <%if(msg) {%>
+                <small><%=msg%></small>
+            <% } %>
+            <input type="text" placeholder="Enter Brand name" class="box" name="brandname" id="brandname" onkeyup="validatebrand()">
+            <small id="small1"></small>
+            <input type="text" placeholder="Enter image path" class="box" name="imgpath" id="imgpath" onkeyup="validateimg()">
+            <small id="small2"></small>
+            <textarea name="message"  cols="30" rows="10" class="box" placeholder="Type description of the Vehicle" id="text"  onkeyup="validatetext()"></textarea>
+            <small id="small3"></small><br>
+            <button type="submit" class="book1" value="addvehicle" name="addvehicle">Add Vehicle</button>
+            <button type="submit" class="book1" value="updvehicle" name="updvehicle">Update Vehicle</button>
+        </form>
+    </div>
+     </section>
+     <script>
+        const brand=document.getElementById("brandname");
+        const img=document.getElementById("imgpath");
+        const textarea=document.getElementById("text");
+        // const msg=document.getElementById("message").value;
+        var count=0;
+
+        // setTimeout(msg,2000);
+
+        function validatebrand(){
+            const brandval=brand.value;
+            if(brandval==""){
+                brand.style.border="2px solid red";
+                document.getElementById("small1").innerHTML="Kindly enter brand name";
+                document.getElementById("small1").style.color="Red";
+            }
+            else{
+                brand.style.border="2px solid green";
+                document.getElementById("small1").innerHTML="";
+                return count++;
+            }
+        }
+        function validateimg(){
+            const imgval=img.value;
+            if(imgval==""){
+                img.style.border="2px solid red";
+                document.getElementById("small2").innerHTML="Enter image path";
+                document.getElementById("small2").style.color="Red";
+            }
+            else{
+                img.style.border="2px solid green";
+                document.getElementById("small2").innerHTML="";
+                return count++;
+            }
+        }
+        function validatetext(){
+            const textareaval=textarea.value;
+            if(textareaval==""){
+                textarea.style.border="2px solid red";
+                document.getElementById("small3").innerHTML="Enter description for the project";
+                document.getElementById("small3").style.color="Red";
+            }
+            else if(textareaval.length<100){
+                textarea.style.border="2px solid red";
+                document.getElementById("small3").innerHTML="Provide more description";
+                document.getElementById("small3").style.color="Red";
+            }
+            else{
+                textarea.style.border="2px solid green";
+                document.getElementById("small3").innerHTML="";
+                return count++;
+            }
+        }
+        function vehicleadd(){
+            if(count>=3){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function image(y){
+            document.getElementById("imgpath").value=y.alt;
+        }
+        function updateveh(x){
+            // console.log(x.this.getAttribute('src'));
+            // console.log(x);
+            // console.log(x.innerText);
+          const split=x.innerText.split("#EV Mart-");
+          document.getElementById("brandname").value=split[0];
+        document.getElementById("text").value="#EV Mart-"+split[1];
+        }
+     </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>login page</title>
+    <link rel="script" href="/controllers/users.js">
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="icon" href="image/plug-solid.svg">
+    <style>
+        #small{
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!--Header section-->
+    
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <a href="login page.html"> <img src="/image/EV-removebg.png" alt="EV Mart" class="Logo"></a>
+     <nav class="navbar">
+      <a href="login page.html">Home</a>
+      <a href="#">Information</a>
+      <a href="#">Services</a>
+      <a href="#footer">Contact</a>
+      <a href="/offers">Offers</a>
+     <!-- <div id="drop-btn" class="fa-solid fa-caret-down"></div> -->
+    </div>
+     </nav>
+     <div id="Button">
+        <form action="/logout" method="post">
+      <button class="book" onclick="logout()">Log-out</button>
+      <a href="Profile page.html"><i class="fas fa-user"></i></a>
+    <small id="small"><%=name%></small>
+      
+      </form>
+      
+     </div>
+    </header>
+       <!--Header section-->
+
+       <!--Featured vehicles-->
+       <h1 class="heading">featured <span>vehicles</span></h1>
+       <section class="services" id="services">
+        <div class="box-container">
+            <% for(var i=0;i<(mani.length);i++) { %>
+            <div class="box">
+                    <h3><%=mani[i].head%></h3>
+                    <img src="<%=mani[i].image %>" alt="">
+                    <p><%=mani[i].content%></p>
+                    <a href="#" class="book">test ride</a>
+                    <a href="#" class="book">order now</a>
+            </div>
+            <% }%>
+        </div>
+            
+           
+      <!--Featured vehicles-->
+
+      <section class="footer" id="footer">
+        <div class="box-container1">
+    <div class="box1">
+        <h3>our branches</h3>
+            <a href="#"><i class="fas fa-map-marker-alt"></i>india</a>
+            <!-- <a href="#"><i class="fas fa-map-marker-alt"></i>france</a>
+            <a href="#"><i class="fas fa-map-marker-alt"></i>africa</a>
+            <a href="#"><i class="fas fa-map-marker-alt"></i>russia</a> -->
+    </div>
+    
+    <div class="box1">
+        <h3>quick links</h3>
+            <a href="#"><i class="fas fa-arrow-right"></i>home</a>
+            <a href="#"><i class="fas fa-arrow-right"></i>vehicles</a>
+            <a href="#"><i class="fas fa-arrow-right"></i>services</a>
+            <a href="#"><i class="fas fa-arrow-right"></i>contact</a>
+            <a href="#"><i class="fas fa-arrow-right"></i>information</a>
+    </div>
+    
+    <div class="box1">
+        <h3>contact details</h3>
+            <a href="#"><i class="fas fa-phone"></i>+91-7904925991</a>
+            <a href="#"><i class="fas fa-phone"></i>+91-6374505526</a>
+            <a href="mailto:jeevaaravinth2001@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i>jeevaaravinth2001@gmail.com</a>
+            <a href="mailto:electricveemart@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></i>electricveemart@gmail.com</a>
+    </div>
+    
+    <div class="box1">
+        <h3>Social media</h3>
+            <a href="https://www.facebook.com/profile.php?id=100090281825277&sk=about" target="_blank"><i class="fab fa-facebook-f"></i>Facebook</a>
+            <a href="https://twitter.com/EVMart2023" target="_blank"><i class="fab fa-twitter"></i>twitter</a>
+            <a href="https://www.instagram.com/ev_mart2022" target="_blank"><i class="fab fa-instagram"></i>instagram</a>
+            <a href="https://www.linkedin.com/in/ev-mart-526859265/" target="_blank"><i class="fab fa-linkedin"></i>linkedin</a>
+    </div>
+        </div>
+        <div class="credit">
+            created by mr.jeeva aravinth j v | EV Mart
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+    function logout(){
+        alert("Are you sure to log-out?");
+    }
+
+
+    window.onscroll= () =>{
+    if(window.scrollY > 0){
+        document.querySelector('.header').classList.add('active');
+    }
+    else    {
+        document.querySelector('.header').classList.remove('active');
+    }
+}
+
+window.onload= () =>{
+    if(window.scrollY > 0){
+        document.querySelector('.header').classList.add('active');
+    }
+    else    {
+        document.querySelector('.header').classList.remove('active');
+    }
+}
+
+
+        var swiper = new Swiper(".vehicles-slider", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop:true,
+    grabCursor:true,
+    centeredSlides:true,
+    autoplay:{
+        delay:2500,
+        disableOnInteraction:false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+        
+      },
+      800: {
+        slidesPerView: 2,
+        
+      },
+
+      991: {
+        slidesPerView: 3,
+    
+      },
+    },
+  });
+  //slideshow
+    </script>
+</body>
+</html>
