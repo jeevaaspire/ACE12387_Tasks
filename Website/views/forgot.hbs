@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/forgot.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="forgotform">
+    <form action="/auth/forgot" method="post" onsubmit="return submit()">
+      <h3>Recover Password</h3>
+      {{#if msg}}
+      <p id="para1">({{msg}})</p>
+      {{/if}}
+        <input type="text" class="box" placeholder="Email" id="email" name="email" onkeyup="validate()"><br><br>
+        <small id="small"></small><br>
+        <input type="text" class="box" placeholder="Username" id="username" name="username" onkeyup="validateuser()">
+        <small id="small1"></small><br>
+        <button type="submit" class="book">Submit</button>
+    </form>
+    </div>
+
+    <script>
+        const email=document.getElementById("email");
+        const user=document.getElementById("username");
+        var count=0;
+        const valid = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        function validate(){
+            const emailval=email.value;
+            if(emailval==""){
+                email.style.border="2px solid red";
+                document.getElementById("small").innerHTML="Enter email ID";
+                document.getElementById("small").style.color="Red";
+                document.getElementById("small").style.display="block";
+            }
+            else if(!valid.test(emailval)){
+                email.style.border="2px solid red";
+                document.getElementById("small").innerHTML="Provide proper mail ID";
+                document.getElementById("small").style.color="Red";
+                document.getElementById("small").style.display="block";
+            }
+            else{
+                email.style.border="2px solid green";
+                 document.getElementById("small").innerHTML="";
+                 document.getElementById("username").style.display="block";
+                 return count++;
+            }
+           }
+           function validateuser(){
+            const userval=user.value;
+            if(userval==""){
+                user.style.border="2px solid red";
+                document.getElementById("small1").innerHTML="Enter username";
+                document.getElementById("small1").style.color="Red";
+                document.getElementById("small1").style.display="block";
+            }
+            else{
+                 user.style.border="2px solid green";
+                document.getElementById("small1").innerHTML="";
+                return count++;
+            }
+           }
+           function submit(){
+            if(count==2){
+                return true;
+            }
+            else{
+                return false;
+            }
+           }
+
+    </script>
+</body>
+</html>
